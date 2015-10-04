@@ -1,0 +1,62 @@
+.other-form-control {
+	display: none;
+}
+
+.required-asterisk {
+	font: normal 12px arial,sans-serif;
+    color: rgb(196,59,29);
+    font-weight: 400;
+}
+
+#shop-schedule {
+	width:inherit;
+}
+
+.signup-form {
+	border: 1px solid #ccc;
+	border-color: rgb(176,190,197);
+	border-radius: 6px;
+	background-color: rgb(255,255,255);
+    box-shadow: 0 5px 10px rgba(0,0,0,0.2);
+    box-sizing: border-box;
+    margin: 0.75rem auto;
+    padding: 20px;
+    max-width: 700px;
+    min-width: 280px;
+    width: 100%;
+}
+
+.signup-form form {
+	border-top: 1px solid #ddd;
+    padding-top: 20px;
+    margin-top: 20px;
+}
+
+.signup-form input {
+	max-width: 325px;
+}
+
+.signup-form div.first-checkbox {
+	margin-top: 0px;
+}
+
+.shiftRow {
+	display: table-row;
+}
+
+.shiftDay {
+	display: table-cell;
+	border: 1px solid;
+    height: 94px;
+    width: 94px;
+    text-align: center;
+    vertical-align: top;
+}
+
+.shiftDay.closed {
+	background-color: #eee;
+}
+
+.shiftDayHeading {
+	font-weight:bold;
+}

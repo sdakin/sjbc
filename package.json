@@ -1,0 +1,11 @@
+{
+  "name": "SJBC-Site",
+  "description": "A site for managing SJBC",
+  "version": "0.1.0",
+  "dependencies": {
+  },
+  "devDependencies": {
+    "grunt": "latest",
+    "grunt-contrib-jshint": "latest"
+  }
+}
