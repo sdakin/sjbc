@@ -8,6 +8,11 @@
     font-weight: 400;
 }
 
+.required-error {
+	border-color: rgb(196,59,29);
+    border: 2px solid;
+}
+
 #shop-schedule {
 	width:inherit;
 }

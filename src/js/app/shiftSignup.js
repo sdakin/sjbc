@@ -3,7 +3,8 @@ requirejs.config({
 
     "paths": {
         "jquery": "../xlib/jquery-1.11.3.min",
-        "bootstrap": "../xlib/tbs/js/bootstrap.min"
+        "bootstrap": "../xlib/tbs/js/bootstrap.min",
+        "eventtarget": "../xlib/EventTarget"
     },
 
     // jquery and its plugins are not require modules: this is the way to mimic that.
@@ -18,6 +19,7 @@ define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, Fo
 
     var $formUI = $("#shiftSignupForm");
     var form = new FormView($formUI);
+    form.addListener(FormView.SUBMIT, handleSignup);
 
     // create the sign-up schedule
     var $openDayTpl = $($formUI.find("#shiftSignupFormTemplates .shiftDay.open")[0]);
@@ -35,5 +37,9 @@ define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, Fo
             day = new Date(day.getTime() + DateUtils.millisPerDay);
         }
         $schedule.append($row);
+    }
+
+    function handleSignup(e) {
+        debugger;
     }
 });
