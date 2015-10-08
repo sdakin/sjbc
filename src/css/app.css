@@ -3,14 +3,12 @@
 }
 
 .required-asterisk {
-	font: normal 12px arial,sans-serif;
+	font-size: 10px;
     color: rgb(196,59,29);
-    font-weight: 400;
 }
 
 .required-error {
-	border-color: rgb(196,59,29);
-    border: 2px solid;
+    border: 2px solid rgb(196,59,29);
 }
 
 #shop-schedule {
@@ -31,7 +29,7 @@
     width: 100%;
 }
 
-.signup-form form {
+.shiftSignupFormHdr {
 	border-top: 1px solid #ddd;
     padding-top: 20px;
     margin-top: 20px;

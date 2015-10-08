@@ -20,6 +20,7 @@ define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, Fo
     var $formUI = $("#shiftSignupForm");
     var form = new FormView($formUI);
     form.addListener(FormView.SUBMIT, handleSignup);
+    form.addListener(FormView.VALIDATE_FORM_OBJECT, handleValidateObject);
 
     // create the sign-up schedule
     var $openDayTpl = $($formUI.find("#shiftSignupFormTemplates .shiftDay.open")[0]);
@@ -41,5 +42,46 @@ define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, Fo
 
     function handleSignup(e) {
         debugger;
+    }
+
+    function handleValidateObject(e) {
+        // perform custom validation for the shift sign up form
+        e.valid = false;
+        var field = $(e.obj.$view.children()[1]).attr("class"),
+            choices, checks, $field;
+        if (field.indexOf("skills") >= 0) {
+            choices = e.obj.$view.find("input[type='checkbox']");
+            checks = false;
+            $.each(choices, function(index, choice) {
+                if (index == 3) {
+                    if ($(choice).is(":checked")) {
+                        var $field = e.obj.$view.find("#inputOtherSkill");
+                        checks |= $field.val().length > 0;
+                    }
+                } else {
+                    checks |= $(choice).is(":checked");
+                }
+            });
+            $field = e.obj.$view.find(".skills");
+            if (checks === 0) {
+                $field.addClass("required-error");
+            } else {
+                e.valid = true;
+                $field.removeClass("required-error");
+            }
+        } else if (field.indexOf("shiftSchedule") >= 0) {
+            choices = e.obj.$view.find("input");
+            checks = false;
+            $.each(choices, function(index, choice) {
+                checks |= $(choice).is(":checked");
+            });
+            $field = e.obj.$view.find(".shiftSchedule");
+            if (checks === 0) {
+                $field.addClass("required-error");
+            } else {
+                e.valid = true;
+                $field.removeClass("required-error");
+            }
+        }
     }
 });
