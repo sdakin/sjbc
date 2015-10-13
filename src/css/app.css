@@ -21,10 +21,21 @@ body {
     margin: 0 270px 0 0;
 }
 
+#site-nav {
+    min-height: inherit;
+    border-radius: 0px;
+}
+
+#site-nav-items>li>a {
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
 #pageHeading {
 	margin-top: 2em;
 	padding-left: 0px;
 	padding-right: 0px;
+    border-top: 2px solid #bbb;
 }
 
 #pageHeading hgroup {
