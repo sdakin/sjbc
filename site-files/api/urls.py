@@ -15,11 +15,10 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from api.views import about, hello, current_datetime
+from api.views import about, shiftSignup
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^about/$', about, name='static'),
-    url(r'^hello/$', hello),
-    url(r'^time/$', current_datetime),
+    url(r'^about/$', about),
+    url(r'^shiftSignup/$', shiftSignup),
 ]

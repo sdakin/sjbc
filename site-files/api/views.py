@@ -12,5 +12,7 @@ def current_datetime(request):
     return HttpResponse(html)
 
 def about(request):
-    context = {'app_css': settings.WEB_DIR + "/xlib/tbs/css/bootstrap.min.css"}
-    return render_to_response('about.html', context)
+    return render_to_response('about.html')
+
+def shiftSignup(request):
+    return render_to_response('shiftSignup.html')
