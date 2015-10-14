@@ -3,7 +3,7 @@ module.exports = function(grunt) {
   // Project configuration
   grunt.initConfig({
     jshint: {
-      all: ['src/js/**/*.js']
+      all: ['site-files/static/js/**/*.js']
     }
   });
 

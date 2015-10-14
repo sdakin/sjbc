@@ -1,5 +1,5 @@
 requirejs.config({
-    "baseUrl": "js",
+    "baseUrl": "/static/js",
 
     "paths": {
         "jquery": "../xlib/jquery-1.11.3.min",
@@ -14,7 +14,7 @@ requirejs.config({
     }
 });
 
-define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, FormView) {
+define(["lib/DateUtils", "app/views/FormView", "bootstrap"], function(DateUtils, FormView) {
     "use strict";
 
     var $formUI = $("#shiftSignupForm");
@@ -27,17 +27,26 @@ define(["lib/DateUtils", "app/views/FormView", "jquery"], function(DateUtils, Fo
     var $closedDayTpl = $($formUI.find("#shiftSignupFormTemplates .shiftDay.closed")[0]);
     var $schedule = $formUI.find(".shiftSchedule");
     var dayHdgs = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-    var day = DateUtils.getPreviousDay(new Date(), 0);
+    var day = DateUtils.getPreviousDay(new Date(), 0), today = new Date();
     for (var i = 0 ; i < 4 ; i++) {
         var $row = $('<div class="shiftRow"></div>');
         for (var j = 0 ; j < 7 ; j++) {
             var $day = (j >= 1 && j <= 4) ? $openDayTpl.clone() : $closedDayTpl.clone();
             var heading = dayHdgs[j] + " " + (day.getMonth() + 1) + '/' + day.getDate();
             $day.find(".shiftDayHeading").text(heading);
+            if (dayInPast()) {
+                $day.find("label").css("cursor", "default").css("color", "#bbb");
+                $day.find("input").prop("disabled", true);
+            }
             $row.append($day);
             day = new Date(day.getTime() + DateUtils.millisPerDay);
         }
         $schedule.append($row);
+    }
+
+    function dayInPast() {
+        return (day.getYear() < today.getYear() || day.getMonth() < today.getMonth() ||
+                day.getDate() < today.getDate());
     }
 
     function handleSignup(e) {
