@@ -1,18 +1,44 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "head.html" %}
+
 <body>
-{% include "pageHeading.html" %}
-	<div id="storeTemplates">
-		<div class="well storeBike">
-			<img src="">
-			<div class="storeBikeTitle"></div>
-		</div>
-	</div>
+    {% include "pageHeading.html" %}
+    <div id="dlgBikeDetails" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title"></h4>
+                    <div class="bikePrice"><span class="badge"></span></div>
+                </div>
+                <div class="modal-body">
+                    <div class="bikeImage"><img src=""></div>
+                    <div class="bikeDescription"></div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="storeTemplates">
+        <div class="well storeBike">
+            <img src="">
+            <div class="storeBikeTitle"></div>
+        </div>
+    </div>
     <div class="container pageContent">
-    	<div id="storeInventory">
-		</div>
-	</div>
-<script data-main="/static/js/app/store" src="/static/xlib/require.js"></script>
+        <div>
+            <div style="max-width:400px;margin:auto">
+                <h1>Bicycles For Sale</h1>
+                <p>San Jose Bike Clinic has several bicycles for sale at our shop in downtown San Jose. All bicycles are donated and fixed up to excellent condition by our skilled volunteer mechanics. All proceeds go towards helping to support our workshop.</p>
+                <p>Click on any bike below for more information</p>
+            </div>
+        </div>
+        <div id="storeInventory">
+        </div>
+    </div>
+    <script data-main="/static/js/app/store" src="/static/xlib/require.js"></script>
 </body>
+
 </html>

@@ -49,11 +49,30 @@ define(["bootstrap"], function() {
 	    },
 	];
 
-	var $bikeTemplate = $("#storeTemplates").find(".storeBike"), $inventory = $("#storeInventory");
+	var $bikeTemplate = $("#storeTemplates").find(".storeBike"), $inventory = $("#storeInventory"),
+		bikeIndex = 0;
 	inventory.forEach(function(bike) {
 		var $bike = $bikeTemplate.clone();
-		$bike.find("img").attr("src", "/static/img/store/bikes/" + bike.image);
-		$bike.find(".storeBikeTitle").text(bike.title + " – $" + bike.price);
+		$bike.attr("data-index", bikeIndex++);
+		$bike.find("img").attr("src", "/static/img/store/bikes/" + bike.image).click(onBikeSelected);
+		$bike.find(".storeBikeTitle").text(bike.title + " – $" + bike.price).click(onBikeSelected);
+		$bike.click(onBikeSelected);
 		$inventory.append($bike);
 	});
+
+	function onBikeSelected(e) {
+		var $bike = $(e.target);
+		var index = $bike.attr("data-index");
+		if (!index) {
+			$bike = $bike.parents(".storeBike");
+			index = $bike.attr("data-index");
+		}
+		var bikeData = inventory[index];
+		var $dlg = $('#dlgBikeDetails');
+		$dlg.find(".modal-title").text(bikeData.title);
+		$dlg.find(".bikePrice").find("span").text("$" + bikeData.price + ".00");
+		$dlg.find(".bikeImage").find("img").attr("src", "/static/img/store/bikes/" + bikeData.image);
+		$dlg.find(".bikeDescription").text(bikeData.description);
+		$dlg.modal();
+	}
 });

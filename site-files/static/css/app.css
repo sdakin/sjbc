@@ -117,6 +117,10 @@ body {
 
 /* ---- store ---- */
 
+#dlgBikeDetails {
+    display: none;
+}
+
 #storeTemplates {
     display: none;
 }
@@ -129,9 +133,30 @@ body {
 .storeBike {
     display: inline-block;
     margin: 10px 10px;
+    cursor: pointer;
 }
 
 .storeBikeTitle {
     text-align: center;
     padding-top: 10px;
+}
+
+.bikePrice {
+    position: absolute;
+    right: 15px;
+    top: 10px;
+}
+
+.bikePrice > span {
+    font-size: 1.2em;
+    background-color: green;
+    padding: 8px 12px;
+}
+
+.bikeImage {
+    text-align: center;
+}
+
+.bikeDescription {
+    padding: 25px 30px 5px;
 }
