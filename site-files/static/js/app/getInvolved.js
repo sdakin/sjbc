@@ -16,4 +16,9 @@ requirejs.config({
 
 define(["app/shiftSignup", "bootstrap"], function() {
     "use strict";
+
+    $('.nav-tabs a').click(function(e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
 });

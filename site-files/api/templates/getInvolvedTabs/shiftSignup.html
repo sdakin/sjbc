@@ -1,0 +1,126 @@
+<div role="tabpanel" class="tab-pane" id="shiftSignUp">
+    <div class="signup-form">
+        <h3>Sign up for shifts at San Jose Bike Clinic!</h3>
+        <p>Please use this form to sign-up for shifts at San Jose Bike Clinic.</p>
+        <p>The Bike Clinic's current schedule has us operating 4 days a week, Monday through Thursday, with hours as per the schedule below. Each day is broken up into two 2-hour shifts to help make scheduling easier.</p>
+        <p>Daily Shop Schedule (All hours PM):</p>
+        <table id="shop-schedule" class="table table-bordered">
+            <tr>
+                <th>Day</th>
+                <th>Shop Hours</th>
+                <th>Shift 1 Hours</th>
+                <th>Shift 2 Hours</th>
+            </tr>
+            <tr>
+                <td>Mon</td>
+                <td>5 - 8</td>
+                <td>4:30 - 6:30</td>
+                <td>6:30 - 8:30</td>
+            </tr>
+            <tr>
+                <td>Tues</td>
+                <td>5 - 8</td>
+                <td>4:30 - 6:30</td>
+                <td>6:30 - 8:30</td>
+            </tr>
+            <tr>
+                <td>Wed</td>
+                <td>5 - 8</td>
+                <td>4:30 - 6:30</td>
+                <td>6:30 - 8:30</td>
+            </tr>
+            <tr>
+                <td>Thurs</td>
+                <td>5 - 8</td>
+                <td>4:30 - 6:30</td>
+                <td>6:30 - 8:30</td>
+            </tr>
+        </table>
+        <p>At any given time we'll have dates up for the current month and the next month. It's okay to volunteer a little bit at a time -- you can fill out this form as many times as you like.</p>
+        <div class="shiftSignupFormHdr" aria-hidden="true">
+            <span class="glyphicon glyphicon-asterisk required-asterisk"></span>
+            <span style="font-size:12px;color: rgb(196,59,29)">Required</span>
+        </div>
+        <form id="shiftSignupForm">
+            <div id="shiftSignupFormTemplates" style="display:none">
+                <div class="shiftDay open">
+                    <div class="shiftDayHeading"></div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">4:30-6:30</label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">6:30-8:30</label>
+                    </div>
+                </div>
+                <div class="shiftDay closed">
+                    <div class="shiftDayHeading"></div>
+                    <div style="font-style:italic;padding-top:20px;">shop closed</div>
+                </div>
+            </div>
+            <br/>
+            <div class="form-group">
+                <label for="inputName" class="control-label">Name
+                    <span class="glyphicon glyphicon-asterisk required-asterisk" aria-hidden="true"></span>
+                </label>
+                <input type="text" class="form-control" id="inputName">
+            </div>
+            <div class="form-group">
+                <label for="inputEmail" class="control-label">Email address
+                    <span class="glyphicon glyphicon-asterisk required-asterisk" aria-hidden="true"></span>
+                </label>
+                <input type="email" class="form-control" id="inputEmail">
+            </div>
+            <div class="form-group">
+                <label for="inputPhone" class="control-label">Phone number</label>
+                <input type="text" class="form-control" id="inputPhone">
+            </div>
+            <div class="form-group">
+                <label for="inputContact" class="control-label">What's the best way to get ahold of you?
+                    <span class="glyphicon glyphicon-asterisk required-asterisk" aria-hidden="true"></span>
+                    <br/>
+                    <span style="font-weight:normal">(text, email, Facebook, IM, etc...)</span>
+                </label>
+                <input type="text" class="form-control" id="inputContact">
+            </div>
+            <div class="form-group">
+                <label class="control-label">I can help with...
+                    <span class="glyphicon glyphicon-asterisk required-asterisk" aria-hidden="true"></span>
+                </label>
+                <div class="skills">
+                    <div class="checkbox first-checkbox">
+                        <label>
+                            <input type="checkbox" value="">setup / breakdown</label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">wrenching on bikes</label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="">staffing the merch table</label>
+                    </div>
+                    <div class="checkbox">
+                        <label>
+                            <input type="checkbox" value="other">other...</label>
+                        <input type="text" class="form-control other-form-control" id="inputOtherSkill">
+                    </div>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">...for these shifts...
+                    <span class="glyphicon glyphicon-asterisk required-asterisk" aria-hidden="true"></span>
+                </label>
+                <div class="shiftSchedule"></div>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Any other notes you'd like to add?</label>
+                <textarea class="form-control" rows="4"></textarea>
+            </div>
+            <div class="submitArea">
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
+</div>

@@ -5,15 +5,18 @@
 <body>
     {% include "pageHeading.html" %}
     <div class="container pageContent">
-        <ul class="nav nav-tabs">
-            <li role="presentation" class="active"><a href="#">How to Help</a></li>
-            <li role="presentation"><a href="#">Shift Sign-up</a></li>
-            <li role="presentation"><a href="#">Shift Check-in</a></li>
-            <li role="presentation"><a href="#">Shift Check-out</a></li>
+        <ul class="nav nav-tabs" role="tablist">
+            <li role="presentation" class="active"><a href="#howToHelp" aria-controls="howToHelp" role="tab" data-toggle="tab">How to Help</a></li>
+            <li role="presentation"><a href="#shiftSignUp" aria-controls="shiftSignUp" role="tab" data-toggle="tab">Shift Sign-up</a></li>
+            <li role="presentation"><a href="#shiftCheckIn" aria-controls="shiftCheckIn" role="tab" data-toggle="tab">Shift Check-in</a></li>
+            <li role="presentation"><a href="#shiftCheckOut" aria-controls="shiftCheckOut" role="tab" data-toggle="tab">Shift Check-out</a></li>
         </ul>
-	    <div class="tab-content">
-		    {% include "shiftSignup.html" %}
-		</div>
+        <div class="tab-content">
+            {% include "getInvolvedTabs/howToHelp.html" %}
+            {% include "getInvolvedTabs/shiftSignup.html" %}
+            <div role="tabpanel" class="tab-pane" id="shiftCheckIn"></div>
+            <div role="tabpanel" class="tab-pane" id="shiftCheckOut"></div>
+        </div>
     </div>
     {% include "pageFooter.html" %}
     <script data-main="/static/js/app/getInvolved" src="/static/xlib/require.js"></script>
