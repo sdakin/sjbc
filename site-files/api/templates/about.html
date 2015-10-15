@@ -1,8 +1,56 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "head.html" %}
+
 <body>
-{% include "pageHeading.html" %}
-<script data-main="/static/js/app/about" src="/static/xlib/require.js"></script>
+    {% include "pageHeading.html" %}
+    <div id="aboutContent" class="container pageContent" role="main">
+        <article id="post-4" style="max-width: 570px;margin: auto;">
+            <header class="entry-header">
+                <h1 class="entry-title">About San Jose Bike Clinic</h1>
+            </header>
+            <!-- .entry-header -->
+            <div class="aboutContent">
+                <p><strong>DIY Bicycle Repair Workshop</strong></p>
+                <p>San José Bike Clinic is a do-it-yourself community bicycle workshop located in downtown San Jose. We are entirely <strong>volunteer-run</strong> and <strong>non-profit</strong>, a fiscally sponsored program of <a href="http://bikesiliconvalley.org/" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://bikesiliconvalley.org']);">Silicon Valley Bicycle Coalition</a>.</p>
+                <p>Our shop is located at <strong>19 North&nbsp;2nd Street</strong>. Enter in through the door to the left of Angelou’s, head down the hallway, and find us on the right.</p>
+                <p>We are open four days per week:</p>
+                <table class="table hoursTable">
+                    <tbody>
+                        <tr>
+                            <td>Monday</td>
+                            <td>5 pm – 8 pm</td>
+                        </tr>
+                        <tr>
+                            <td>Tuesday</td>
+                            <td>5 pm – 8 pm</td>
+                        </tr>
+                        <tr>
+                            <td>Wednesday</td>
+                            <td>5 pm – 8 pm</td>
+                        </tr>
+                        <tr>
+                            <td>Thursday</td>
+                            <td>5 pm – 8 pm</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><strong>Our Mission</strong></p>
+                <p>The mission of the San José Bike Clinic is to build a robust and diverse cycling community in San José by providing a shared space for bicycle repair and education.</p>
+                <p><strong>Contact</strong> us at <a href="mailto:sjbc@bikesiliconvalley.org">sjbc@bikesiliconvalley.org</a></p>
+                <p>San José Bike Clinic was the dream of a small group of volunteers that has now become a reality. Imagine…</p>
+                <ul>
+                    <li>Imagine a city with flat terrain and perfectly temperate, dry weather year-round.</li>
+                    <li>Imagine its residents; fun-loving, practical, health-conscious, environmentalist, and brilliant.</li>
+                    <li>Imagine its cycling culture, thriving with thrilling events like <a title="San Jose Bike Party" href="http://www.sjbikeparty.org" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.sjbikeparty.org']);">San José Bike Party</a>, strong organizations like the <a title="SVBC" href="http://www.bikesiliconvalley.org" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.bikesiliconvalley.org']);">Silicon Valley Bicycle Coalition</a>, and amazing plans like the <a title="Bike Plan 2020" href="http://www.sanjoseca.gov/transportation/bikeped/bikeped_update.asp" onclick="javascript:_gaq.push(['_trackEvent','outbound-article','http://www.sanjoseca.gov']);">City of San José’s Bike Plan 2020</a>.</li>
+                    <li>Imagine a <strong>space</strong>, dedicated to these cyclists, this city, and its thriving bike culture – a community space for bike repair, bike education, and general all-around bike love.</li>
+                </ul>
+                <p>You’ve just met San José Bike Clinic. It’s nice to meet you.</p>
+            </div>
+        </article>
+    </div>
+    {% include "pageFooter.html" %}
+    <script data-main="/static/js/app/about" src="/static/xlib/require.js"></script>
 </body>
+
 </html>
