@@ -14,5 +14,8 @@ def current_datetime(request):
 def about(request):
     return render_to_response('about.html')
 
+def store(request):
+    return render_to_response('store.html')
+
 def shiftSignup(request):
     return render_to_response('shiftSignup.html')

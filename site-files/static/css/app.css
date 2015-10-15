@@ -59,6 +59,8 @@ body {
     border: 2px solid rgb(196,59,29);
 }
 
+/* ---- shift sign-up ---- */
+
 #shop-schedule {
 	width:inherit;
 }
@@ -110,4 +112,26 @@ body {
 
 .shiftDayHeading {
 	font-weight:bold;
+}
+
+
+/* ---- store ---- */
+
+#storeTemplates {
+    display: none;
+}
+
+#storeInventory {
+    text-align: center;
+    padding-bottom: 20px;
+}
+
+.storeBike {
+    display: inline-block;
+    margin: 10px 10px;
+}
+
+.storeBikeTitle {
+    text-align: center;
+    padding-top: 10px;
 }
