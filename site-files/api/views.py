@@ -17,5 +17,5 @@ def about(request):
 def store(request):
     return render_to_response('store.html')
 
-def shiftSignup(request):
-    return render_to_response('shiftSignup.html')
+def getInvolved(request):
+    return render_to_response('getInvolved.html')
