@@ -22,4 +22,5 @@ urlpatterns = [
     url(r'^about/$', about),
     url(r'^store/$', store),
     url(r'^getInvolved/$', getInvolved),
+    url(r'^$', about),
 ]

@@ -81,6 +81,19 @@ body {
 }
 
 
+/* ---- get involved ---- */
+
+#getInvolved .nav-tabs {
+    max-width: 740px;
+    margin: auto;
+}
+
+.tab-content .tab-pane {
+    max-width: 700px;
+    margin: auto;
+}
+
+
 /* ---- shift sign-up ---- */
 
 #shop-schedule {
