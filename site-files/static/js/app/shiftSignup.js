@@ -29,8 +29,8 @@ define(["lib/DateUtils", "app/views/FormView"], function(DateUtils, FormView) {
     }
 
     function dayInPast() {
-        return (day.getYear() < today.getYear() || day.getMonth() < today.getMonth() ||
-                day.getDate() < today.getDate());
+        return new Date(day.getYear(), day.getMonth(), day.getDate()).getTime() <
+               new Date(today.getYear(), today.getMonth(), today.getDate()).getTime();
     }
 
     function handleSignup(e) {

@@ -156,6 +156,10 @@ body {
     display: none;
 }
 
+#dlgBikeDetails > .modal-dialog {
+    width: 640px;
+}
+
 #storeTemplates {
     display: none;
 }
@@ -190,6 +194,10 @@ body {
 
 .bikeImage {
     text-align: center;
+}
+
+.bikeImage > img {
+    width: 600px;
 }
 
 .bikeDescription {
