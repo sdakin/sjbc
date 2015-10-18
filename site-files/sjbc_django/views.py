@@ -19,3 +19,6 @@ def store(request):
 
 def getInvolved(request):
     return render_to_response('getInvolved.html')
+
+def donate(request):
+    return render_to_response('donate.html')

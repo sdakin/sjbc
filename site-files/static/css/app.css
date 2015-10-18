@@ -81,6 +81,17 @@ body {
 }
 
 
+/* ---- donate ---- */
+
+.donateContent {
+    padding: 1.625em 0 0;
+}
+
+.donateContent > p {
+    margin-bottom: 1.625em;
+}
+
+
 /* ---- get involved ---- */
 
 #getInvolved .nav-tabs {
