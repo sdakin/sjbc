@@ -18,7 +18,21 @@ define(["app/shiftSignup", "bootstrap"], function() {
     "use strict";
 
     $('.nav-tabs a').click(function(e) {
-        e.preventDefault()
-        $(this).tab('show')
-    })
+        e.preventDefault();
+        window.location.hash = $(this).text();
+    });
+
+    window.onhashchange = function(e) {
+        if (window.location.hash && window.location.hash.length > 1) {
+            showTab(window.location.hash.substr(1));
+        }
+    };
+    window.onhashchange();  // force a tab show check on first load
+
+    function showTab(tabName) {
+        $('.nav-tabs a').each(function(index, tab) {
+            if ($(tab).text() == tabName)
+                $(tab).tab('show');
+        });
+    }
 });

@@ -59,6 +59,21 @@ define(["bootstrap"], function() {
 		$bike.click(onBikeSelected);
 		$inventory.append($bike);
 	});
+	window.onhashchange = function(e) {
+		if (window.location.hash && window.location.hash.length > 1) {
+			loadBike(window.location.hash.substr(1));
+		}
+	};
+	window.onhashchange();	// force a bike load check on first load
+
+	function loadBike(bikeName) {
+		for (var i = 0 ; i < inventory.length ; i++) {
+			if (bikeName === inventory[i].title) {
+				showBikeDetails(i);
+				break;
+			}
+		}
+	}
 
 	function onBikeSelected(e) {
 		var $bike = $(e.target);
@@ -68,11 +83,23 @@ define(["bootstrap"], function() {
 			index = $bike.attr("data-index");
 		}
 		var bikeData = inventory[index];
+		// this event can be fired more than once because we've registered it with a
+		// parent DOM element and the child elements can also fire it, so we only
+		// set the hash if it's different
+		if (window.location.hash !== "#" + bikeData.title) {
+			window.location.hash = bikeData.title;
+		}
+	}
+
+	function showBikeDetails(index) {
+		var bikeData = inventory[index];
 		var $dlg = $('#dlgBikeDetails');
 		$dlg.find(".modal-title").text(bikeData.title);
 		$dlg.find(".bikePrice").find("span").text("$" + bikeData.price + ".00");
 		$dlg.find(".bikeImage").find("img").attr("src", "/static/img/store/bikes/" + bikeData.image);
 		$dlg.find(".bikeDescription").text(bikeData.description);
-		$dlg.modal();
+		$dlg.modal().on('hidden.bs.modal', function (e) {
+			window.location.hash = "";
+		});
 	}
 });
