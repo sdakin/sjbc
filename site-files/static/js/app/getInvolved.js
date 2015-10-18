@@ -19,19 +19,20 @@ define(["app/shiftSignup", "bootstrap"], function() {
 
     $('.nav-tabs a').click(function(e) {
         e.preventDefault();
-        window.location.hash = $(this).text();
+        window.location.hash = $(this).text().replace(/ /g, '_');
     });
 
     window.onhashchange = function(e) {
         if (window.location.hash && window.location.hash.length > 1) {
             showTab(window.location.hash.substr(1));
+            document.activeElement.blur();
         }
     };
     window.onhashchange();  // force a tab show check on first load
 
     function showTab(tabName) {
         $('.nav-tabs a').each(function(index, tab) {
-            if ($(tab).text() == tabName)
+            if ($(tab).text().replace(/ /g, '_') == tabName)
                 $(tab).tab('show');
         });
     }

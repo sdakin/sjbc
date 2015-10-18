@@ -68,7 +68,7 @@ define(["bootstrap"], function() {
 
 	function loadBike(bikeName) {
 		for (var i = 0 ; i < inventory.length ; i++) {
-			if (bikeName === inventory[i].title) {
+			if (bikeName === inventory[i].title.replace(/ /g, '_')) {
 				showBikeDetails(i);
 				break;
 			}
@@ -87,7 +87,7 @@ define(["bootstrap"], function() {
 		// parent DOM element and the child elements can also fire it, so we only
 		// set the hash if it's different
 		if (window.location.hash !== "#" + bikeData.title) {
-			window.location.hash = bikeData.title;
+			window.location.hash = bikeData.title.replace(/ /g, '_');
 		}
 	}
 
