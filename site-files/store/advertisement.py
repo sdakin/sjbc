@@ -1,5 +1,5 @@
 from django.db import models
-from bicycle.models import Bicycle
+from store.bicycle import Bicycle
 
 ################################################################################
 # MODELS
@@ -9,7 +9,7 @@ class Advertisement(models.Model):
     # link to bicycle being sold
     bicycle         = models.ForeignKey(Bicycle)
     # basic details
-    for_sale        = forms.BooleanField(initial=True)
+    for_sale        = models.BooleanField(default=True)
     price_usd       = models.DecimalField(max_digits=4, decimal_places=2) # in dollars
     primary_image   = models.TextField() # url or local filepath
     secondary_image = models.TextField() # url or local filepath
