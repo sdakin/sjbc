@@ -37,6 +37,7 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'sjbc_django.models',
 )
 
 MIDDLEWARE_CLASSES = (
@@ -78,8 +79,10 @@ WSGI_APPLICATION = 'sjbc_django.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+        'ENGINE': 'django.db.backends.mysql',
+        'OPTIONS': {
+            'read_default_file': os.path.join(os.path.dirname(__file__), 'db.cnf').replace('\\','/'),
+        },
     }
 }
 
@@ -103,5 +106,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (os.path.join(BASE_DIR, 'static'),)
-
-WEB_DIR = os.path.join(os.path.split(BASE_DIR)[0], 'src')
