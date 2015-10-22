@@ -11,8 +11,8 @@ class Bicycle(models.Model):
     model              = models.TextField()
     serial_number      = models.TextField()
     color              = models.TextField()
-    frame_size_inches  = models.DecimalField(max_digits=4, decimal_places=2)
-    wheel_size_inches  = models.DecimalField(max_digits=2, decimal_places=2)
+    frame_size_inches  = models.DecimalField(max_digits=4, decimal_places=2, default=0.0)
+    wheel_size_inches  = models.DecimalField(max_digits=4, decimal_places=2, default=0.0)
     location           = models.TextField()
     ready_for_sale     = models.BooleanField(default=False)
     # descriptive status fields

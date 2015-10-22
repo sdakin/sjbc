@@ -10,7 +10,7 @@ class Advertisement(models.Model):
     bicycle         = models.ForeignKey(Bicycle)
     # basic details
     for_sale        = models.BooleanField(default=True)
-    price_usd       = models.DecimalField(max_digits=4, decimal_places=2) # in dollars
+    price_usd       = models.DecimalField(max_digits=6, decimal_places=2) # in dollars
     primary_image   = models.TextField() # url or local filepath
     secondary_image = models.TextField() # url or local filepath
     # craigslist ad details
