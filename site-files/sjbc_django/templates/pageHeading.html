@@ -2,6 +2,22 @@
     <hgroup>
         <h1 id="site-title"><span><a href="http://www.sjbikeclinic.org/" title="San José Bike Clinic" rel="home">San José Bike Clinic</a></span></h1>
         <h2 id="site-description">Building a Shared Space for Bike Repair &amp; Education in Downtown San José</h2>
+        <div class="profile-menu">
+            <a id="profileMenu" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
+                <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                {{ profile_name }}
+                <span class="caret"></span>
+            </a>
+            <ul class="dropdown-menu">
+                {% if user.is_authenticated %}
+                <li><a style="color:#ddd;cursor:default" href="#">Edit profile...</a></li>
+                <li><a id="btnLogOut" href="#">Log out</a></li>
+                {% else %}
+                <li><a style="color:#ddd;cursor:default" href="#">Sign up...</a></li>
+                <li><a id="btnShowLogInDlg" href="#">Log in...</a></li>
+                {% endif %}
+            </ul>
+        </div>
     </hgroup>
     <img src="/static/img/banners/cropped-SJ_BikeClinic_030312_Angela_Shows_Tire_Repair.jpg" width="100%" alt="">
     <nav id="site-nav" class="navbar navbar-inverse">
@@ -21,20 +37,32 @@
                     <li><a href="#join">Become a Member</a></li>
                     <li><a href="/store">Bicycles for Sale</a></li>
                     <li><a href="/donate">Donate</a></li>
-                    <!--li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">Action</a></li>
-                                <li><a href="#">Another action</a></li>
-                                <li><a href="#">Something else here</a></li>
-                                <li role="separator" class="divider"></li>
-                                <li class="dropdown-header">Nav header</li>
-                                <li><a href="#">Separated link</a></li>
-                                <li><a href="#">One more separated link</a></li>
-                            </ul>
-                        </li-->
                 </ul>
             </div>
         </div>
     </nav>
+    <div id="dlgLogIn" class="modal fade">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Log In to San Jose Bike Clinic</h5>
+                </div>
+                <div class="modal-body">
+                    <form id="logInForm">
+                        <div class="form-group">
+                            <label for="inputUser" class="control-label">username: </label>
+                            <input type="text" class="form-control" id="inputUser">
+                        </div>
+                        <div class="form-group">
+                            <label for="inputPwd" class="control-label">password: </label>
+                            <input type="password" class="form-control" id="inputPwd">
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary">Log In</button>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>

@@ -4,7 +4,8 @@ requirejs.config({
     "paths": {
         "jquery": "../xlib/jquery-1.11.3.min",
         "bootstrap": "../xlib/tbs/js/bootstrap.min",
-        "eventtarget": "../xlib/EventTarget"
+        "eventtarget": "../xlib/EventTarget",
+        "appcoreops": "app/appCoreOps"
     },
 
     // jquery and its plugins are not require modules: this is the way to mimic that.
@@ -14,7 +15,7 @@ requirejs.config({
     }
 });
 
-define(["bootstrap"], function() {
+define(["appcoreops"], function() {
     "use strict";
 
 	var inventory = [

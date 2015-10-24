@@ -40,6 +40,32 @@ body {
 
 #pageHeading hgroup {
     margin: 4%;
+    position: relative;
+}
+
+#pageHeading hgroup .profile-menu {
+    position: absolute;
+    top: 0;
+    right: 0;
+    font-size: 1.3em;
+}
+
+#profileMenu:hover {
+    text-decoration: none;
+}
+
+#pageHeading hgroup .dropdown-menu {
+    right: 0;
+    left: auto;
+    min-width: inherit;
+}
+
+#dlgLogIn {
+    display: none;
+}
+
+#dlgLogIn .modal-dialog {
+    max-width: 300px;
 }
 
 .pageContent {

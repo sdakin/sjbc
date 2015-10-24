@@ -16,13 +16,18 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from sjbc_django.views import about, store, getInvolved, donate, db_test
+from sjbc_django.users import do_login, do_logout
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
+    url(r'^user/login/$', do_login),
+    url(r'^user/logout/$', do_logout),
+
     url(r'^about/$', about),
     url(r'^store/$', store),
     url(r'^getInvolved/$', getInvolved),
     url(r'^donate/$', donate),
+
     url(r'^dbtest/$', db_test),
     url(r'^$', about),
 ]
