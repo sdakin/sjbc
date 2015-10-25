@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^getInvolved/$', getInvolved),
     url(r'^donate/$', donate),
 
-    url(r'^sjbc_admin/([a-z/]*)$', do_admin),
+    url(r'^sjbc_admin/([a-z0-9/]*)$', do_admin),
     url(r'^dbtest/$', db_test),
     url(r'^$', about),
 ]

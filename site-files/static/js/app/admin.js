@@ -69,7 +69,12 @@ define(["appcoreops"], function() {
 
     function showBikeDetails(e) {
         $allPanes.hide();
-        $(".bicycleDetailUI").show();
-        // TODO: fetch and display bike details
+        var $panel = $(".bicycleDetailUI");
+        $panel.show();
+        // fetch and display bike details
+        var bikeID = $(e.currentTarget).text();
+        $.get("/sjbc_admin/get/form/bicycle/" + bikeID).done(function(data) {
+            $panel.find(".bicycleDetails").html(data);
+        });
     }
 });
