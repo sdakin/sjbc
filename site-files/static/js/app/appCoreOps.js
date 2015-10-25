@@ -35,6 +35,9 @@ define(["bootstrap"], function() {
     $("#btnShowLogInDlg").click(function(e) { showLogIn(e); });
     $("#btnLogOut").click(function(e) { handleLogOut(e); });
     $logInBtn.click(function(e) { handleLogIn(e); });
+    $logInPwd.on('keydown', function(e) {
+		if (e.keyCode === 13) handleLogIn(e);
+	});
 
     function showLogIn(e) {
 		$logInDlg.modal().on('shown.bs.modal', function(e) {
@@ -59,6 +62,11 @@ define(["bootstrap"], function() {
     }
 
     function handleLogOut(e) {
-    	$.get("/user/logout").done(function() { window.location.reload(); });
+    	$.get("/user/logout").done(function() {
+    		if (window.location.href.indexOf("sjbc_admin") > 0)
+    			window.location.href = "/";
+    		else
+    			window.location.reload();
+    	});
     }
 });

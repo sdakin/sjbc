@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+{% include "head.html" %}
+    <link rel="stylesheet" type="text/css" href="/static/css/admin.css">
+
+<body>
+    {% include "pageHeading.html" %}
+    <div class="container pageContent" role="main">
+        <div class="row">
+            <div class="col-sm-3 col-md-2 sidebar">
+                <ul class="nav nav-sidebar">
+                    <li><a href="#">Bicycles</a></li>
+                    <li><a href="#">Members</a></li>
+                    <li><a href="#">Reports</a></li>
+                    <li><a href="#">Analytics</a></li>
+                </ul>
+            </div>
+            <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="float:inherit">
+                <div class="bicyclesUI">
+                    <h2 class="sub-header">Bicycles</h2>
+                    <div class="table-responsive">
+                        <table class="table table-striped">
+                            <thead>
+                                <tr>
+                                    <th>id</th>
+                                    <th>SJBC ID</th>
+                                    <th>Manufacturer</th>
+                                    <th>Model</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="bicycleDetailUI">
+                    <h2 class="sub-header">Bicycle Details <button type="button" class="btn btn-danger btn-sm close-details"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% include "pageFooter.html" %}
+    <script data-main="/static/js/app/admin" src="/static/xlib/require.js"></script>
+</body>
+
+</html>

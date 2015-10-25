@@ -37,6 +37,9 @@
                     <li><a href="#join">Become a Member</a></li>
                     <li><a href="/store">Bicycles for Sale</a></li>
                     <li><a href="/donate">Donate</a></li>
+                    {% if user.is_authenticated and user.is_staff %}
+                    <li><a href="/sjbc_admin">Admin</a></li>
+                    {% endif %}
                 </ul>
             </div>
         </div>
