@@ -15,6 +15,6 @@ curdir = os.path.dirname(__file__)
 projectdir = os.path.dirname(curdir)
 sys.path.append(projectdir)
 
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sjbc_django.settings_prod")
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "sjbc_django.settings")
 
 application = get_wsgi_application()
