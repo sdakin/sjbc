@@ -47,6 +47,7 @@ class Advertisement(models.Model):
         # * http://www.programmableweb.com/news/not-craigslist-api-youre-looking/2012/09/14
         # * https://www.craigslist.org/about/bulk_posting_interface
         # * http://stackoverflow.com/questions/10353021/is-there-a-developers-api-for-craisglist-org
+        pass
 
 ################################################################################
 # END OF FILE
