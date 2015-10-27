@@ -41,6 +41,13 @@ class Advertisement(models.Model):
         about_svbc = '*Silicon Valley Bicycle Coalition is a 501(c)-3 non-profit. Find out more at www.bikesiliconvalley.org.'
         body_text = '\n\n'.join([bike_desc, about_sjbc, about_sale, thanks, about_svbc])
         return body_text
+    def post_to_craigslist(self):
+        # this needs fleshing out!
+        # references:
+        # * http://www.programmableweb.com/news/not-craigslist-api-youre-looking/2012/09/14
+        # * https://www.craigslist.org/about/bulk_posting_interface
+        # * http://stackoverflow.com/questions/10353021/is-there-a-developers-api-for-craisglist-org
+        pass
 
 ################################################################################
 # END OF FILE
