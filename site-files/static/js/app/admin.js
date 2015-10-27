@@ -74,7 +74,20 @@ define(["appcoreops"], function() {
         // fetch and display bike details
         var bikeID = $(e.currentTarget).text();
         $.get("/sjbc_admin/get/form/bicycle/" + bikeID).done(function(data) {
-            $panel.find(".bicycleDetails").html(data);
+            var $details = $panel.find(".bicycleDetails");
+            $details.html(data);
+            var $form = $details.find("form");
+            $form.attr("data-bikeid", bikeID);
+            $form.on("submit", function(e) { saveBicycle(e); });
+        });
+    }
+
+    function saveBicycle(e) {
+        e.preventDefault();
+        var $form = $(e.currentTarget), data = $form.serialize(), 
+            url = $form.attr("action") + $form.attr("data-bikeid");
+        $.post(url, data).done(function(response) {
+            debugger;
         });
     }
 });

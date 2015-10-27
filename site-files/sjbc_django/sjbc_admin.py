@@ -15,6 +15,8 @@ def do_admin(request, path):
                 return browse_records(ops[1])
             if ops[0] == 'get' and len(ops) > 1:
                 return get_record(ops[1:], request)
+            if ops[0] == 'save' and len(ops) > 1:
+                return save_record(ops[1:], request)
         else:
             return render_to_response('admin.html', context=get_default_context(request))
     raise Http404
@@ -35,15 +37,37 @@ def get_record(pathElts, request):
     raise Http404
 
 def get_form(pathElts, request):
-    print "getting form..."
     if pathElts[0] == 'bicycle':
-        print "getting bicycle form..."
         if len(pathElts) == 1:      # return an empty form
             raise Http404
         else:
             id = pathElts[1]
-            print "getting bicycle form for id: " + id
             bicycle = Bicycle.objects.get(pk=id)
             form = BicycleForm(instance=bicycle)
-            return render(request, 'basicForm.html', {'form': form})
+            context = {'form': form, 'submit_url': '/sjbc_admin/save/bicycle/'}
+            return render(request, 'basicForm.html', context)
     raise Http404
+
+def save_record(pathElts, request):
+    if pathElts[0] == 'bicycle':
+        return save_bicycle(pathElts[1:], request)
+    raise Http404
+
+def save_bicycle(pathElts, request):
+    form = None
+    result = 400
+    if len(pathElts) == 0:
+        print "insert new bicycle"
+        form = BicycleForm(request.POST)
+    else:
+        print "update bicycle with id: " + pathElts[0]
+        bike = Bicycle.objects.get(pk=pathElts[0])
+        if bike == None:
+            raise Http404
+        else:
+            form = BicycleForm(request.POST, instance=bike)
+    if form.is_valid():
+        form.save()
+        result = 200
+
+    return HttpResponse(status=result)
