@@ -10,7 +10,8 @@ from store.bicycle import Bicycle
 def do_admin(request, path):
     if request.user.is_authenticated() and request.user.is_staff:
         if path:
-            ops = path.split('/')
+            # use a filter to omit empty path elements
+            ops = filter(lambda a: a != '', path.split('/'))
             if ops[0] == 'browse' and len(ops) == 2:
                 return browse_records(ops[1])
             if ops[0] == 'get' and len(ops) > 1:
@@ -37,15 +38,18 @@ def get_record(pathElts, request):
     raise Http404
 
 def get_form(pathElts, request):
+    form = None
+    context = {}
     if pathElts[0] == 'bicycle':
         if len(pathElts) == 1:      # return an empty form
-            raise Http404
+            form = BicycleForm()
         else:
             id = pathElts[1]
             bicycle = Bicycle.objects.get(pk=id)
             form = BicycleForm(instance=bicycle)
-            context = {'form': form, 'submit_url': '/sjbc_admin/save/bicycle/'}
-            return render(request, 'basicForm.html', context)
+        context = {'form': form, 'submit_url': '/sjbc_admin/save/bicycle/'}
+    if form:
+        return render(request, 'basicForm.html', context)
     raise Http404
 
 def save_record(pathElts, request):
@@ -69,5 +73,7 @@ def save_bicycle(pathElts, request):
     if form.is_valid():
         form.save()
         result = 200
+    else:
+        print "form is not valid"
 
     return HttpResponse(status=result)

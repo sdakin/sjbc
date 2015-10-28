@@ -1,11 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 {% include "head.html" %}
-    <link rel="stylesheet" type="text/css" href="/static/css/admin.css">
+<link rel="stylesheet" type="text/css" href="/static/css/admin.css">
 
 <body>
     {% include "pageHeading.html" %}
     <div class="container pageContent" role="main">
+        <div id="adminAlert" class="alert alert-success alert-dismissible" role="alert">
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <span class="alert-message"></span>
+        </div>
         <div class="row">
             <div class="col-sm-3 col-md-2 sidebar">
                 <ul class="nav nav-sidebar">
@@ -17,7 +21,12 @@
             </div>
             <div class="col-sm-6 col-sm-offset-3 col-md-10 col-md-offset-2 main" style="float:inherit">
                 <div class="bicyclesUI">
-                    <h2 class="sub-header">Bicycles</h2>
+                    <h2 class="sub-header">Bicycles
+                        <div class="toolbar">
+                            <button type="button" class="btn btn-refresh"><span class="glyphicon glyphicon-refresh" aria-hidden="true"></span></button>
+                            <button type="button" class="btn btn-addbike"><span class="glyphicon glyphicon-plus-sign" aria-hidden="true"></span></button>
+                        </div>
+                    </h2>
                     <div class="table-responsive">
                         <table class="table table-striped">
                             <thead>
@@ -34,7 +43,9 @@
                     </div>
                 </div>
                 <div class="bicycleDetailUI">
-                    <h2 class="sub-header">Bicycle Details <button type="button" class="btn btn-danger btn-sm close-details"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button></h2>
+                    <h2 class="sub-header">Bicycle Details 
+                        <button type="button" class="btn btn-danger btn-sm close-button"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></button>
+                    </h2>
                     <div class="bicycleDetails"></div>
                 </div>
             </div>

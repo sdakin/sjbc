@@ -35,7 +35,9 @@ define(["appcoreops"], function() {
             }
         }
     });
-    $(".bicycleDetailUI").find("button.close-details").click(function(e) { showBicycles(); });
+    $(".bicyclesUI").find(".btn-refresh").click(function(e) { qBikes = null; showBicycles(); });
+    $(".bicyclesUI").find(".btn-addbike").click(function(e) { showBikeDetails(null); });
+    $(".bicycleDetailUI").find("button.close-button").click(function(e) { showBicycles(); });
 
     function showBicycles() {
         $allPanes.hide();
@@ -54,6 +56,7 @@ define(["appcoreops"], function() {
     function loadBicycles(bikes) {
         if (bikes && Array.isArray(bikes)) {
             var $bikeTable = $(".bicyclesUI").find("tbody");
+            $bikeTable.empty();
             bikes.forEach(function(bike) {
                 var btn = '<button type="button" class="btn btn-default btn-xs">' + bike.id + '</button>';
                 var html = "<tr><td>" + btn + "</td><td>" + bike.sjbc_id +
@@ -72,12 +75,14 @@ define(["appcoreops"], function() {
         var $panel = $(".bicycleDetailUI");
         $panel.show();
         // fetch and display bike details
-        var bikeID = $(e.currentTarget).text();
+        var bikeID = e ? $(e.currentTarget).text() : "";
         $.get("/sjbc_admin/get/form/bicycle/" + bikeID).done(function(data) {
             var $details = $panel.find(".bicycleDetails");
             $details.html(data);
             var $form = $details.find("form");
             $form.attr("data-bikeid", bikeID);
+            // create a visual break after the location field
+            $("#id_location").parent().after("<div></div>");
             $form.on("submit", function(e) { saveBicycle(e); });
         });
     }
@@ -85,9 +90,29 @@ define(["appcoreops"], function() {
     function saveBicycle(e) {
         e.preventDefault();
         var $form = $(e.currentTarget), data = $form.serialize(), 
-            url = $form.attr("action") + $form.attr("data-bikeid");
+            url = $form.attr("action") + $form.attr("data-bikeid"),
+            alertOptions = { parent:$(".bicycleDetailUI"), top: "17px" };
         $.post(url, data).done(function(response) {
-            debugger;
+            alertOptions.message = "Bicycle record saved.";
+            showAlert(alertOptions);
+        }).fail(function(response) {
+            alertOptions.message = "ERROR encountered saving bicycle record.";
+            alertOptions.isError = true;
+            showAlert(alertOptions);
         });
+    }
+
+    function showAlert(options) {
+        var $alert = $("#adminAlert").clone();
+        $alert.find(".alert-message").text(options.message);
+        if ("top" in options) $alert.css("top", options.top);
+        options.parent.append($alert);
+        $alert.show();
+        $alert.alert();
+        if (!options.sticky) {
+            $alert.delay(1500).fadeOut(800, function() {
+                $alert.alert('close');
+            });
+        }
     }
 });
