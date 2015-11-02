@@ -23,23 +23,22 @@ define(["appcoreops", "lib/admin/MembershipAdmin"],
     "use strict";
 
     var membershipPanel = new MembershipAdmin();
-    var curView = "", qBikes = null, $allPanes = $("div.main > div");
+    membershipPanel.addListener("SHOW_ALERT", function(e) { showAlert(e.options); });
+
+    var qBikes = null, $allPanes = $("div.main > div");
     $(".nav-sidebar").find("a").click(function(e) {
         var view = $(e.currentTarget).text();
-        // if (view != curView) {
-            curView = view;
-            switch (view) {
-                case "Bicycles":
-                    showBicycles();
-                    break;
-                case "Membership":
-                    membershipPanel.showMembership();
-                    break;
-                default:
-                    $allPanes.hide();
-                    break;
-            }
-        // }
+        switch (view) {
+            case "Bicycles":
+                showBicycles();
+                break;
+            case "Membership":
+                membershipPanel.showMembership();
+                break;
+            default:
+                $allPanes.hide();
+                break;
+        }
     });
 
     $(".bicyclesUI").find(".btn-refresh").click(function(e) { qBikes = null; showBicycles(); });

@@ -23,11 +23,11 @@ class SjbcMember(User):
     type_of_cyclist    = models.CharField(max_length=16,
                                           choices=TYPE_OF_CYCLIST_CHOICES,
                                           blank=True)
-    gender             = models.CharField(max_length=16, blank=True)
-    date_of_birth      = models.DateField(blank=True)
-    race_ethnicity     = models.TextField(blank=True)
+    gender             = models.CharField(max_length=16, blank=True, null=True)
+    date_of_birth      = models.DateField(blank=True, null=True)
+    race_ethnicity     = models.TextField(blank=True, null=True)
     waiver_signed      = models.BooleanField(default=False)
-    notes              = models.TextField(blank=True)
+    notes              = models.TextField(blank=True, null=True)
     
     # many-to-one relationships
     #   - donations

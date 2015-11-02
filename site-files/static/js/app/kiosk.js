@@ -28,5 +28,17 @@ define(["appcoreops"],
         var $form = $signupPanel.find("form");
         $("label[for='id_type_of_cyclist_0']").parent().css("display", "block");
         $("#id_type_of_cyclist").next().css("display", "block");
+        $form.on("submit", function(e) { doSignUp(e); });
     });
+
+    function doSignUp(e) {
+        e.preventDefault();
+        var $form = $(e.currentTarget), data = $form.serialize(), 
+            url = $form.attr("action");
+        $.post(url, data).done(function(response) {
+            debugger;
+        }).fail(function(response) {
+            debugger;
+        });
+    }
 });

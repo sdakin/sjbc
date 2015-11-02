@@ -2,6 +2,7 @@ from django.core import serializers
 from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
+from django.contrib.auth.models import User
 
 from sjbc_django.forms.bicycle_form import BicycleForm
 from sjbc_django.forms.member_form import MemberForm
@@ -17,6 +18,8 @@ def do_kiosk(request, path):
         if path.startswith("get/form/signup"):
             form = SignUpForm()
             context = { 'form': form, 'submit_url': '/kiosk/signup/' }
+        elif path.startswith("signup"):
+            return signup_member(request)
 
     if form:
         return render(request, 'basicForm.html', context)
@@ -45,6 +48,8 @@ def browse_records(type):
     raise Http404
 
 def get_record(pathElts, request):
+    if pathElts[0] == 'members':
+        return get_members(pathElts[1:], request)
     if pathElts[0] == 'form' and len(pathElts) > 1:
         return get_form(pathElts[1:], request)
     if pathElts[0] == 'bicycle':
@@ -67,25 +72,34 @@ def get_form(pathElts, request):
     elif pathElts[0] == 'member':
         if len(pathElts) == 1:      # return an empty form
             form = MemberForm()
+        else:
+            id = pathElts[1]
+            member = SjbcMember.objects.get(pk=id)
+            form = MemberForm(instance=member)
         context = {'form': form, 'submit_url': '/sjbc_admin/save/member/'}
 
     if form:
         return render(request, 'basicForm.html', context)
     raise Http404
 
+def get_members(pathElts, request):
+    members = SjbcMember.objects.values('id', 'first_name', 'last_name', 'email', 
+                                        'waiver_signed')
+    return JsonResponse(list(members), safe=False, status=200)
+
 def save_record(pathElts, request):
     if pathElts[0] == 'bicycle':
         return save_bicycle(pathElts[1:], request)
+    if pathElts[0] == 'member':
+        return save_member(pathElts[1:], request)
     raise Http404
 
 def save_bicycle(pathElts, request):
     form = None
     result = 400
     if len(pathElts) == 0:
-        print "insert new bicycle"
         form = BicycleForm(request.POST)
     else:
-        print "update bicycle with id: " + pathElts[0]
         bike = Bicycle.objects.get(pk=pathElts[0])
         if bike == None:
             raise Http404
@@ -96,5 +110,38 @@ def save_bicycle(pathElts, request):
         result = 200
     else:
         print "form is not valid"
+
+    return HttpResponse(status=result)
+
+def save_member(pathElts, request):
+    form = None
+    result = 400
+    if len(pathElts) == 0:
+        print "insert new member"
+        form = MemberForm(request.POST)
+    else:
+        print "update member with id: " + pathElts[0]
+        member = SjbcMember.objects.get(pk=pathElts[0])
+        if member == None:
+            raise Http404
+        else:
+            form = MemberForm(request.POST, instance=member)
+    if form.is_valid():
+        form.save()
+        result = 200
+    else:
+        print "form is not valid"
+
+    return HttpResponse(status=result)
+
+def signup_member(request):
+    result = 400
+    form = SignUpForm(request.POST)
+    if form.is_valid():
+        form.save()
+        result = 200
+    else:
+        print "form is not valid"
+        print form.errors
 
     return HttpResponse(status=result)

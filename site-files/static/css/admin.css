@@ -63,3 +63,7 @@ form textarea {
     font-weight: bold;
     color: blue;
 }
+
+.signup-form > form > input {
+	margin-top: 20px;
+}
