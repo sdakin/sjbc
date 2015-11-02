@@ -4,8 +4,24 @@ from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 
 from sjbc_django.forms.bicycle_form import BicycleForm
+from sjbc_django.forms.member_form import MemberForm
+from sjbc_django.forms.signup_form import SignUpForm
 from sjbc_django.views import get_default_context
+from membership.sjbcMember import SjbcMember
 from store.bicycle import Bicycle
+
+def do_kiosk(request, path):
+    form = None
+    context = { 'hide_banner': True }
+    if path:
+        if path.startswith("get/form/signup"):
+            form = SignUpForm()
+            context = { 'form': form, 'submit_url': '/kiosk/signup/' }
+
+    if form:
+        return render(request, 'basicForm.html', context)
+
+    return render_to_response('kiosk.html', context)
 
 def do_admin(request, path):
     if request.user.is_authenticated() and request.user.is_staff:
@@ -48,6 +64,11 @@ def get_form(pathElts, request):
             bicycle = Bicycle.objects.get(pk=id)
             form = BicycleForm(instance=bicycle)
         context = {'form': form, 'submit_url': '/sjbc_admin/save/bicycle/'}
+    elif pathElts[0] == 'member':
+        if len(pathElts) == 1:      # return an empty form
+            form = MemberForm()
+        context = {'form': form, 'submit_url': '/sjbc_admin/save/member/'}
+
     if form:
         return render(request, 'basicForm.html', context)
     raise Http404

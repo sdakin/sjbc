@@ -17,7 +17,7 @@ from django.conf.urls import include, url
 from django.contrib import admin
 from sjbc_django.views import about, store, getInvolved, donate, db_test
 from sjbc_django.users import do_login, do_logout
-from sjbc_django.sjbc_admin import do_admin
+from sjbc_django.sjbc_admin import do_admin, do_kiosk
 
 urlpatterns = [
     url(r'^admin/', include(admin.site.urls)),
@@ -30,6 +30,7 @@ urlpatterns = [
     url(r'^donate/$', donate),
 
     url(r'^sjbc_admin/([a-z0-9/]*)$', do_admin),
+    url(r'^kiosk/([a-z0-9/]*)$', do_kiosk),
     url(r'^dbtest/$', db_test),
     url(r'^$', about),
 ]

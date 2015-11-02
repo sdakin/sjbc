@@ -17,24 +17,31 @@ requirejs.config({
 
 // every 'script data-main' must include appCoreOps to properly handle the app's
 // core operations (e.g., sign up, log in, log out, etc.)
-define(["appcoreops"], function() {
+define(["appcoreops", "lib/admin/MembershipAdmin"],
+    function(AppCoreOps, MembershipAdmin)
+{
     "use strict";
 
+    var membershipPanel = new MembershipAdmin();
     var curView = "", qBikes = null, $allPanes = $("div.main > div");
     $(".nav-sidebar").find("a").click(function(e) {
         var view = $(e.currentTarget).text();
-        if (view != curView) {
+        // if (view != curView) {
             curView = view;
             switch (view) {
                 case "Bicycles":
                     showBicycles();
                     break;
+                case "Membership":
+                    membershipPanel.showMembership();
+                    break;
                 default:
                     $allPanes.hide();
                     break;
             }
-        }
+        // }
     });
+
     $(".bicyclesUI").find(".btn-refresh").click(function(e) { qBikes = null; showBicycles(); });
     $(".bicyclesUI").find(".btn-addbike").click(function(e) { showBikeDetails(null); });
     $(".bicycleDetailUI").find("button.close-button").click(function(e) { showBicycles(); });
@@ -104,6 +111,10 @@ define(["appcoreops"], function() {
 
     function showAlert(options) {
         var $alert = $("#adminAlert").clone();
+        if (options.isError) {
+            $alert.removeClass("alert-success");
+            $alert.addClass("alert-danger");
+        }
         $alert.find(".alert-message").text(options.message);
         if ("top" in options) $alert.css("top", options.top);
         options.parent.append($alert);

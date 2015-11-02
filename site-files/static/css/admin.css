@@ -1,3 +1,7 @@
+div.main > div {
+	display:none;
+}
+
 #adminAlert {
 	display: none;
 	position: absolute;
@@ -14,6 +18,10 @@
 	position: absolute;
     top: 0;
     right: 15px;
+}
+
+form {
+	padding-bottom: 20px;
 }
 
 form p {
@@ -37,11 +45,21 @@ form textarea {
 	display: block;
 }
 
-.bicyclesUI {
-	display:none;
+#id_type_of_cyclist {
+	list-style-type: none;
 }
 
 .bicycleDetailUI {
-	display: none;
 	position: relative;
+}
+
+.kiosk {
+	border-top: 1px solid;
+}
+
+.kiosk > h3 {
+	text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+    color: blue;
 }

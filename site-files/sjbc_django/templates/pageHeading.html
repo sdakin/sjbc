@@ -2,6 +2,7 @@
     <hgroup>
         <h1 id="site-title"><span><a href="http://www.sjbikeclinic.org/" title="San José Bike Clinic" rel="home">San José Bike Clinic</a></span></h1>
         <h2 id="site-description">Building a Shared Space for Bike Repair &amp; Education in Downtown San José</h2>
+        {% if not hide_banner %}
         <div class="profile-menu">
             <a id="profileMenu" class="dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">
                 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
@@ -18,7 +19,9 @@
                 {% endif %}
             </ul>
         </div>
+        {% endif %}
     </hgroup>
+    {% if not hide_banner %}
     <img src="/static/img/banners/cropped-SJ_BikeClinic_030312_Angela_Shows_Tire_Repair.jpg" width="100%" alt="">
     <nav id="site-nav" class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -44,6 +47,7 @@
             </div>
         </div>
     </nav>
+    {% endif %}
     <div id="dlgLogIn" class="modal fade">
         <div class="modal-dialog">
             <div class="modal-content">
