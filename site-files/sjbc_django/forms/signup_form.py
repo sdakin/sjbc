@@ -1,14 +1,15 @@
-from django.forms import ModelForm, TextInput, RadioSelect, Textarea
+from django.forms import ModelForm, TextInput, RadioSelect, Textarea, HiddenInput
 from membership.sjbcMember import SjbcMember
 
 class SignUpForm(ModelForm):
     class Meta:
         model = SjbcMember
-        fields = ['first_name', 'last_name', 'email', 'phone_number', 
+        fields = ['username', 'first_name', 'last_name', 'email', 'phone_number', 
             'type_of_cyclist', 'street_address', 'city', 'state', 'zip_code',
             'gender', 'date_of_birth', 'race_ethnicity', 'notes',
         ]
         widgets = {
+            'username': HiddenInput(),
             'first_name': TextInput(attrs={'size': 20, 'required': True}),
             'last_name': TextInput(attrs={'size': 20, 'required': True}),
             'email': TextInput(attrs={'size': 20, 'required': True}),

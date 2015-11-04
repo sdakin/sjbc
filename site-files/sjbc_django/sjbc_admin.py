@@ -3,6 +3,7 @@ from django.http import HttpResponse, JsonResponse, Http404
 from django.shortcuts import render, render_to_response
 from django.template import RequestContext
 from django.contrib.auth.models import User
+import uuid
 
 from sjbc_django.forms.bicycle_form import BicycleForm
 from sjbc_django.forms.member_form import MemberForm
@@ -84,7 +85,7 @@ def get_form(pathElts, request):
 
 def get_members(pathElts, request):
     members = SjbcMember.objects.values('id', 'first_name', 'last_name', 'email', 
-                                        'waiver_signed')
+                                        'username', 'waiver_signed')
     return JsonResponse(list(members), safe=False, status=200)
 
 def save_record(pathElts, request):
@@ -118,6 +119,7 @@ def save_member(pathElts, request):
     result = 400
     if len(pathElts) == 0:
         print "insert new member"
+        print request.POST
         form = MemberForm(request.POST)
     else:
         print "update member with id: " + pathElts[0]
@@ -136,7 +138,11 @@ def save_member(pathElts, request):
 
 def signup_member(request):
     result = 400
-    form = SignUpForm(request.POST)
+    print request.POST
+    params = request.POST.copy()
+    params['username'] = uuid.uuid4().hex[:30]
+    print params
+    form = SignUpForm(params)
     if form.is_valid():
         form.save()
         result = 200

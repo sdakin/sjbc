@@ -11,6 +11,7 @@ define(["eventtarget"], function(EventTarget) {
         self.$allPanes = $("div.main > div");
         self.$panel = $(".membershipUI");
         self.$panel.find(".btn-addmember").click(function(e) { self.showMemberDetails(null); });
+        $(".membershipUI").find("button.btn-refreshmembers").click(function(e) { self.reloadMembers(); });
         $(".memberDetailUI").find("button.close-button").click(function(e) { self.showMembership(); });
     }
 
@@ -22,17 +23,21 @@ define(["eventtarget"], function(EventTarget) {
         if (!self.$panel.is(':visible')) {
             self.$allPanes.hide();
             self.$panel.show();
-            if (!self.qMembers) {
-                self.qMembers = $.Deferred();
-                self.qMembers.then(function(memberData) {
-                    self.loadMembers(memberData);
-                });
-                $.get("/sjbc_admin/get/members").done(function(data) {
-                    self.qMembers.resolve(data);
-                });
-            }
+            if (!self.qMembers)
+                self.reloadMembers();
         }
     };
+
+    MembershipAdmin.prototype.reloadMembers = function() {
+        var self = this;
+        self.qMembers = $.Deferred();
+        self.qMembers.then(function(memberData) {
+            self.loadMembers(memberData);
+        });
+        $.get("/sjbc_admin/get/members").done(function(data) {
+            self.qMembers.resolve(data);
+        });
+    }
 
     MembershipAdmin.prototype.loadMembers = function(members) {
         var self = this, $memberTable = $(".membershipUI").find("tbody");
@@ -41,9 +46,9 @@ define(["eventtarget"], function(EventTarget) {
             members.forEach(function(member) {
                 var btn = '<button type="button" class="btn btn-default btn-xs">' + member.id + '</button>';
                 var waiver = member.waiver_signed ? '<span class="glyphicon glyphicon-ok" aria-hidden="true"></span>' : "&nbsp;";
-                var html = "<tr><td>" + btn + "</td><td>" + member.first_name +
-                    "</td><td>" + member.last_name +"</td><td>" + member.email + "</td><td>" +
-                    waiver + "</td></tr>";
+                var html = "<tr><td>" + btn + "</td><td>" + member.first_name + "</td><td>" +
+                    member.last_name +"</td><td>" + member.email + "</td><td>" +
+                    member.username +"</td><td>" + waiver + "</td></tr>";
                 var $row = $(html);
                 $row.find("button").click(function(e) {
                     self.showMemberDetails(e);
@@ -93,6 +98,7 @@ define(["eventtarget"], function(EventTarget) {
         $.post(url, data).done(function(response) {
             saveEvent.options.message = "Member record saved.";
             self.fire(saveEvent);
+            self.qMembers = null;   // force a reload when returning to the member list
         }).fail(function(response) {
             saveEvent.options.message = "ERROR encountered saving member record.";
             saveEvent.options.isError = true;
