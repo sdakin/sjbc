@@ -38,6 +38,8 @@ def do_admin(request, path):
                 return get_record(ops[1:], request)
             if ops[0] == 'save' and len(ops) > 1:
                 return save_record(ops[1:], request)
+            if ops[0] == 'delete' and len(ops) > 1:
+                return delete_record(ops[1:], request)
         else:
             return render_to_response('admin.html', context=get_default_context(request))
     raise Http404
@@ -46,6 +48,13 @@ def browse_records(type):
     if type == 'bicycles':
         bikes = Bicycle.objects.values('id', 'sjbc_id', 'manufacturer', 'model')
         return JsonResponse(list(bikes), safe=False, status=200)
+    raise Http404
+
+def delete_record(pathElts, request):
+    if pathElts[0] == 'bicycle':
+        bike = Bicycle.objects.get(id__exact=pathElts[1])
+        bike.delete()
+        return HttpResponse(status=200)
     raise Http404
 
 def get_record(pathElts, request):

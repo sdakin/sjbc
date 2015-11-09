@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-from sjbc_django.views import about, store, getInvolved, donate, db_test
+from sjbc_django.views import about, getInvolved, join, store, donate, db_test
 from sjbc_django.users import do_login, do_logout
 from sjbc_django.sjbc_admin import do_admin, do_kiosk
 
@@ -25,8 +25,9 @@ urlpatterns = [
     url(r'^user/logout/$', do_logout),
 
     url(r'^about/$', about),
-    url(r'^store/$', store),
     url(r'^getInvolved/$', getInvolved),
+    url(r'^join/$', join),
+    url(r'^store/$', store),
     url(r'^donate/$', donate),
 
     url(r'^sjbc_admin/([a-z0-9/]*)$', do_admin),

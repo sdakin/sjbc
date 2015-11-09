@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, NumberInput
+from django.forms import ModelForm, TextInput, NumberInput, Textarea
 from store.bicycle import Bicycle
 
 class BicycleForm(ModelForm):
@@ -13,9 +13,16 @@ class BicycleForm(ModelForm):
             'sjbc_id': TextInput(attrs={'size': 20}),
             'manufacturer': TextInput(attrs={'size': 20}),
             'model': TextInput(attrs={'size': 20}),
-            'color': TextInput(attrs={'size': 20}),
+            'color': TextInput(attrs={'size': 10}),
             'serial_number': TextInput(attrs={'size': 20}),
-            'frame_size_inches': NumberInput(attrs={'size': 8}),
-            'wheel_size_inches': NumberInput(attrs={'size': 8}),
+            'frame_size_inches': NumberInput(attrs={'size': 4}),
+            'wheel_size_inches': NumberInput(attrs={'size': 4}),
             'location': TextInput(attrs={'size': 20}),
+            'sales_tagline': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'initial_assessment': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'work_performed': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'work_to_do': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'parts_used': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'parts_needed': Textarea(attrs={'cols': 45, 'rows': 7}),
+            'misc_notes': Textarea(attrs={'cols': 90, 'rows': 4}),
         }

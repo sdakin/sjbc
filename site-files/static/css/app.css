@@ -107,6 +107,41 @@ body {
 }
 
 
+/* ---- join ---- */
+
+.membershipIntro {
+    max-width: 600px;
+    margin: auto;
+}
+
+.membershipIntro > h4 {
+    text-align: center;
+    padding-top: 20px;
+    font-weight: bold;
+}
+
+.membershipPanels {
+    text-align: center;
+}
+
+.membershipInfo {
+    max-width: 500px;
+    display: inline-table;
+    margin: 20px;
+}
+
+.membershipInfo > .panel-body {
+    text-align: left;
+}
+
+.membershipFormHeading {
+    text-align: center;
+    border-top: 1px gray solid;
+    padding: 20px 0px;
+    margin-top: 20px;
+}
+
+
 /* ---- donate ---- */
 
 .donateContent {

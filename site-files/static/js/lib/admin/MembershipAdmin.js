@@ -37,7 +37,7 @@ define(["eventtarget"], function(EventTarget) {
         $.get("/sjbc_admin/get/members").done(function(data) {
             self.qMembers.resolve(data);
         });
-    }
+    };
 
     MembershipAdmin.prototype.loadMembers = function(members) {
         var self = this, $memberTable = $(".membershipUI").find("tbody");
@@ -56,7 +56,7 @@ define(["eventtarget"], function(EventTarget) {
                 $memberTable.append($row);
             });
         }
-    }
+    };
 
     MembershipAdmin.prototype.showMemberDetails = function(e) {
         var self = this;

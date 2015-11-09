@@ -19,12 +19,16 @@ def about(request):
     return render_to_response('about.html', context=get_default_context(request))
 
 @ensure_csrf_cookie
-def store(request):
-    return render_to_response('store.html', context=get_default_context(request))
-
-@ensure_csrf_cookie
 def getInvolved(request):
     return render_to_response('getInvolved.html', context=get_default_context(request))
+
+@ensure_csrf_cookie
+def join(request):
+    return render_to_response('join.html', context=get_default_context(request))
+
+@ensure_csrf_cookie
+def store(request):
+    return render_to_response('store.html', context=get_default_context(request))
 
 @ensure_csrf_cookie
 def donate(request):

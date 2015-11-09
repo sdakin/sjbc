@@ -67,3 +67,21 @@ form textarea {
 .signup-form > form > input {
 	margin-top: 20px;
 }
+
+.bicycleDetails {
+	position: relative;
+}
+
+.bicycleDetails input[type="number"] {
+	width: 100px;
+}
+
+.bicycleDetailUI > .delete-button {
+	position: absolute;
+    bottom: 15px;
+    right: 0;
+}
+
+#dlgDeleteBicycle {
+	display: none;
+}

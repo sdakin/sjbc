@@ -44,6 +44,8 @@ define(["appcoreops", "lib/admin/MembershipAdmin"],
     $(".bicyclesUI").find(".btn-refresh").click(function(e) { qBikes = null; showBicycles(); });
     $(".bicyclesUI").find(".btn-addbike").click(function(e) { showBikeDetails(null); });
     $(".bicycleDetailUI").find("button.close-button").click(function(e) { showBicycles(); });
+    $(".bicycleDetailUI").find("button.delete-button").click(function(e) { confirmDeleteBicycle(); });
+    $("#dlgDeleteBicycle").find("button.btn-danger").click(function(e) { deleteBicycle(); });
 
     function showBicycles() {
         $allPanes.hide();
@@ -124,5 +126,29 @@ define(["appcoreops", "lib/admin/MembershipAdmin"],
                 $alert.alert('close');
             });
         }
+    }
+
+    function confirmDeleteBicycle() {
+        $('#dlgDeleteBicycle').modal();
+    }
+
+    function deleteBicycle() {
+        // get the record ID of the bicycle record being edited and
+        // use it to send a DELETE command
+        var bikeID = $(".bicycleDetailUI").find("form").attr("data-bikeid");
+        $.ajax({
+            url: "/sjbc_admin/delete/bicycle/" + bikeID,
+            method: 'DELETE'
+        }).done(function(response) {
+            $('#dlgDeleteBicycle').modal('hide');
+            qBikes = null;  // force a reload of the bicycle data
+            showBicycles();
+        }).fail(function(response) {
+            $('#dlgDeleteBicycle').modal('hide');
+            var alertOptions = { parent:$(".bicycleDetailUI"), top: "17px" };
+            alertOptions.message = "ERROR encountered deleting bicycle record.";
+            alertOptions.isError = true;
+            showAlert(alertOptions);
+        });
     }
 });
