@@ -5,14 +5,21 @@ body {
 #site-title {
     font-size: 14px;
     margin-top: 0;
+    font-weight: bold;
 }
 
 #site-title a {
     color: #111;
-    font-size: 30px;
-    font-weight: bold;
-    line-height: 36px;
+    font-size: 20px;
+    line-height: 24px;
     text-decoration: none;
+}
+
+@media (min-width: 700px) {
+    #site-title a {
+        font-size: 30px;
+        line-height: 36px;
+    }
 }
 
 #site-description {
@@ -139,6 +146,16 @@ body {
     border-top: 1px gray solid;
     padding: 20px 0px;
     margin-top: 20px;
+}
+
+.membershipInfo > .panel-heading {
+    position: relative;
+}
+
+.membershipPrice {
+    position: absolute;
+    right: 7px;
+    top: 7px;
 }
 
 
